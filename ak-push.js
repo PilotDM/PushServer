@@ -22,10 +22,10 @@
         debug: "false" === "true",
         isTest: "false" === "true",
         resourceToken: "B9bnmFL7Kcn-8e7333ea9fb3989c",
-        apiServerHost: "10.200.1.100:27443",
+        apiServerHost: "pxl.dmitry-timofeev.dev.altkraft.com",
         swPath: "/service-worker.js",
         firebase: {
-            apiKey: "AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
+            apiKey: " AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
             projectId: "push-9c109",
             messagingSenderId: "617217386230",
         },
@@ -41,7 +41,7 @@
             },
             "Safari": {
                 websitePushID: "",
-                websitePushAPI: "https://10.200.1.100:27443/ap",
+                websitePushAPI: "https://pxl.dmitry-timofeev.dev.altkraft.com/ap",
             },
         },
         expirationSWChrome: "900"
