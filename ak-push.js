@@ -22,16 +22,16 @@
         debug: "false" === "true",
         isTest: "false" === "true",
         resourceToken: "B9bnmFL7Kcn-8e7333ea9fb3989c",
-        apiServerHost: "pxl.dmitry-timofeev.lan:80",
+        apiServerHost: "10.200.1.100:27443",
         swPath: "/service-worker.js",
         firebase: {
-            apiKey: "",
-            projectId: "",
-            messagingSenderId: "",
+            apiKey: "AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
+            projectId: "push-9c109",
+            messagingSenderId: "617217386230",
         },
         browsers: {
             "Chrome": {
-                isFirebase: "false" === "true"
+                isFirebase: "true" === "true"
             },
             "Firefox": {
                 isFirebase: "false" === "true"
@@ -41,7 +41,7 @@
             },
             "Safari": {
                 websitePushID: "",
-                websitePushAPI: "https://pxl.dmitry-timofeev.lan:80/ap",
+                websitePushAPI: "https://10.200.1.100:27443/ap",
             },
         },
         expirationSWChrome: "900"
