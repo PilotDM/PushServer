@@ -1,1 +1,0 @@
-importScripts('https://pxl.dmitry-timofeev.lan:80/service-worker.js?id=MXwxOA..');
