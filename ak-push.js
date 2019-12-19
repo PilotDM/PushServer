@@ -1,16 +1,15 @@
 // Usage:
-//
+// var akPush = new AKPush()
 // try {
-//     var akPush = new AKPush()
 //     akPush.initSubscription() // Show push subscribe browser popup
 //     // ...
 // } catch (e) {
 //     // ...
 // }
 
-(function (window) {
+(function(window) {
 
-    ['firebase-app.js', 'firebase-messaging.js'].map(function(f){
+    ['firebase-app.js', 'firebase-messaging.js'].map(function(f) {
         var s = document.createElement("script");
         s.async = false;
         s.defer = false;
@@ -19,10 +18,10 @@
     });
 
     var injectedConfig = {
-        debug: "false" === "true",
+        debug: "true" === "true",
         isTest: "false" === "true",
-        resourceToken: "J9RsT5ZrRcc-ba448efaa4ae6dc6",
-        apiServerHost: "pxl.dmitry-timofeev.dev.altkraft.com",
+        resourceToken: "wvitcMWANf7-bb362b5fe6a40479",
+        apiServerHost: "cookiesaver.marketing-platform.devel:27443",
         swPath: "/service-worker.js",
         firebase: {
             apiKey: " AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
@@ -41,7 +40,7 @@
             },
             "Safari": {
                 websitePushID: "",
-                websitePushAPI: "https://pxl.dmitry-timofeev.dev.altkraft.com/ap",
+                websitePushAPI: "https://cookiesaver.marketing-platform.devel:27443/ap",
             },
         },
         expirationSWChrome: "900"
@@ -121,6 +120,7 @@
             serverCookiePath: "/pixel?" + ["_push_pix", "/set_cookie_only"].join("="),
             swPath: "/service-worker.js",
             isTest: false,
+            cookieID: "",
             debug: false,
             browsers: {},
             firebase: {
@@ -181,24 +181,6 @@
             }).catch(function(e) {
                 console.error("Can't post", action, e)
             })
-        }
-
-        this.sendCookies = function(callback) {
-            fetch(this.config.serverURL + this.config.serverCookiePath, {
-                method: 'post',
-                credentials: 'include',
-                body: JSON.stringify({ 'resource_token': this.config.resourceToken }),
-            }).then(function(response) {
-                return response.json();
-            }).then(function(data) {
-                if ('cookie_id' in data) {
-                    callback(data['cookie_id']);
-                } else {
-                    console.error('Invalid response for set cookie:', data);
-                }
-            }).catch(function(e) {
-                console.error('Unable to set cookie', e);
-            });
         }
 
         this.localToken = function(new_token) {
@@ -360,8 +342,8 @@
 
         this.getSWPath = function() {
             if (this.config.browser == "Chrome") {
-                let expTime = (this.config.expirationSWChrome != "0") ? this.config.expirationSWChrome  : "900"
-                return this.config.swPath + "?browser=" + this.config.browser + "&expiration="+ Math.floor(Date.now() / (parseInt(expTime, 10) * 1000));
+                let expTime = (this.config.expirationSWChrome != "0") ? this.config.expirationSWChrome : "900"
+                return this.config.swPath + "?browser=" + this.config.browser + "&expiration=" + Math.floor(Date.now() / (parseInt(expTime, 10) * 1000));
             } else {
                 return this.config.swPath + "?browser=" + this.config.browser;
             }
@@ -409,11 +391,9 @@
                     break;
                 case "Safari":
                     this.debug("Initialise subscription for: " + this.config.browser + " with Safari")
-                    this.sendCookies(function(cookieId) { //TODO: m.b. this works slowly
-                        let permissionData = window.safari.pushNotification.permission(that.config.browsers.Safari.websitePushID);
-                        that.debug("Permission data: ", permissionData)
-                        that.initialiseSafariPush(permissionData, match, update, cookieId, customData);
-                    });
+                    let permissionData = window.safari.pushNotification.permission(that.config.browsers.Safari.websitePushID);
+                    that.debug("Permission data: ", permissionData)
+                    that.initialiseSafariPush(permissionData, match, update, cookieID, customData);
                     break;
                 default:
                     console.error("Browser is not supported: ", this.config.browser)
@@ -435,7 +415,34 @@
         window.AKPush = _akpush;
     }
 
+    setCookies();
+    var cookieID;
 
+    function setCookies() {
+        if ('safari' in window && 'pushNotification' in window.safari) { //Safari detection patch
 
+            let serverCookiePath = "/pixel?" + ["_push_pix", "/set_cookie_only"].join("=");
+            let serverPrefix = "https://";
+            let apiServerHost = injectedConfig.apiServerHost;
+            let serverURL = String(serverPrefix + apiServerHost).replace(/\/+$/, "");
+            let resourceToken = injectedConfig.resourceToken;
+
+            fetch(serverURL + serverCookiePath, {
+                method: 'post',
+                credentials: 'include',
+                body: JSON.stringify({ 'resource_token': resourceToken }),
+            }).then(function(response) {
+                return response.json();
+            }).then(function(data) {
+                if ('cookie_id' in data) {
+                    cookieID = data['cookie_id']
+                } else {
+                    console.error('Invalid response for set cookie:', data);
+                }
+            }).catch(function(e) {
+                console.error('Unable to set cookie', e);
+            });
+        }
+    }
 
 })(window);

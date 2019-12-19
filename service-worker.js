@@ -1,9 +1,9 @@
 (function(self) {
     var injectedConfig = {
-        debug: "false" === "true",
+        debug: "true" === "true",
         isTest: "false" === "true",
-        resourceToken: "J9RsT5ZrRcc-ba448efaa4ae6dc6",
-        apiServerHost: "pxl.dmitry-timofeev.dev.altkraft.com",
+        resourceToken: "wvitcMWANf7-bb362b5fe6a40479",
+        apiServerHost: "cookiesaver.marketing-platform.devel:27443",
         swPath: "/service-worker.js",
         firebase: {
             apiKey: " AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
@@ -22,7 +22,7 @@
             },
             "Safari": {
                 websitePushID: "",
-                websitePushAPI: "https://pxl.dmitry-timofeev.dev.altkraft.com/ap",
+                websitePushAPI: "https://cookiesaver.marketing-platform.devel:27443/ap",
             },
         }
     };
