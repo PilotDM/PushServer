@@ -3,7 +3,7 @@
         debug: "true" === "true",
         isTest: "false" === "true",
         resourceToken: "wvitcMWANf7-bb362b5fe6a40479",
-        apiServerHost: "cookiesaver.marketing-platform.devel:27443",
+        apiServerHost: "pxl.dmitry-timofeev.dev.altkraft.com:27443",
         swPath: "/service-worker.js",
         firebase: {
             apiKey: "AIzaSyA9CmD_70RHvkNoFPMSy6jAVne1GRsjWpE",
@@ -22,7 +22,7 @@
             },
             "Safari": {
                 websitePushID: "",
-                websitePushAPI: "https://cookiesaver.marketing-platform.devel:27443/ap",
+                websitePushAPI: "https://pxl.dmitry-timofeev.dev.altkraft.com:27443/ap",
             },
         }
     };
