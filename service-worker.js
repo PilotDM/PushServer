@@ -6,9 +6,9 @@
         apiServerHost: "cookiesaver.marketing-platform.devel:27443",
         swPath: "/service-worker.js",
         firebase: {
-            apiKey: " AIzaSyAAU8eQfLJ40K8Kkeq82p2vYsZJb2nFUzU",
-            projectId: "push-9c109",
-            messagingSenderId: "617217386230",
+            apiKey: "AIzaSyA9CmD_70RHvkNoFPMSy6jAVne1GRsjWpE",
+            projectId: "new-push-40173",
+            messagingSenderId: "314574021235",
         },
         browsers: {
             "Chrome": {
